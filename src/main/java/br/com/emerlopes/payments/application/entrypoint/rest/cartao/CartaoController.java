@@ -2,9 +2,9 @@ package br.com.emerlopes.payments.application.entrypoint.rest.cartao;
 
 import br.com.emerlopes.payments.application.entrypoint.rest.cartao.dto.GerarCartaoRequestDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cartao.dto.GerarCartaoResponseDTO;
+import br.com.emerlopes.payments.application.shared.CustomResponseDTO;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.usecase.cartao.GerarCartaoUseCase;
-import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,9 @@ import java.util.UUID;
 
 
 @RestController
-@RequestMapping("/cartoes")
+@RequestMapping("api/cartoes")
 public class CartaoController {
 
-    private final static Logger log = org.slf4j.LoggerFactory.getLogger(CartaoController.class);
     private final GerarCartaoUseCase gerarCartaoUseCase;
 
     public CartaoController(
@@ -27,12 +26,12 @@ public class CartaoController {
 
 
     @PostMapping
-    public ResponseEntity<?> criarCartao(
+    public ResponseEntity<?> gerarCartao(
             final @RequestBody GerarCartaoRequestDTO cartaoRequestDTO
     ) {
-        log.info("Recebendo requisicao para gerar cartao");
         final CartaoDomainEntity cartaoDomainEntity = CartaoDomainEntity
                 .builder()
+                .cpf(cartaoRequestDTO.getCpf())
                 .numero(cartaoRequestDTO.getNumero())
                 .limite(cartaoRequestDTO.getLimite())
                 .dataValidade(cartaoRequestDTO.getDataValidade())
@@ -41,12 +40,12 @@ public class CartaoController {
 
         final CartaoDomainEntity idCartaoGerado = gerarCartaoUseCase.execute(cartaoDomainEntity);
 
-        log.info("Cartao gerado com sucesso");
-
         return ResponseEntity.status(HttpStatus.OK).body(
-                GerarCartaoResponseDTO.builder()
-                        .idCartao(idCartaoGerado.getId())
-                        .build()
+                new CustomResponseDTO<>().setData(
+                        GerarCartaoResponseDTO.builder()
+                                .idCartao(idCartaoGerado.getId())
+                                .build()
+                )
         );
     }
 
@@ -54,7 +53,6 @@ public class CartaoController {
     public ResponseEntity<?> getCartao(
             final @PathVariable UUID cartaoId
     ) {
-        log.info("Recebendo requisicao para buscar cartao");
         final CartaoDomainEntity cartaoDomainEntity = CartaoDomainEntity
                 .builder()
                 .id(cartaoId)
@@ -62,12 +60,12 @@ public class CartaoController {
 
         final CartaoDomainEntity idCartaoGerado = gerarCartaoUseCase.execute(cartaoDomainEntity);
 
-        log.info("Cartao encontrado com sucesso");
-
         return ResponseEntity.status(HttpStatus.OK).body(
-                GerarCartaoResponseDTO.builder()
-                        .idCartao(idCartaoGerado.getId())
-                        .build()
+                new CustomResponseDTO<>().setData(
+                        GerarCartaoResponseDTO.builder()
+                                .idCartao(idCartaoGerado.getId())
+                                .build()
+                )
         );
     }
 }
