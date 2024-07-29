@@ -1,8 +1,8 @@
 package br.com.emerlopes.creditlimitchecker.application.entrypoint.rest.cliente;
 
-import br.com.emerlopes.creditlimitchecker.application.entrypoint.rest.cartao.dto.GerarCartaoResponseDTO;
 import br.com.emerlopes.creditlimitchecker.application.entrypoint.rest.cliente.dto.RegistrarClienteRequestDTO;
 import br.com.emerlopes.creditlimitchecker.application.entrypoint.rest.cliente.dto.RegistrarClienteResponseDTO;
+import br.com.emerlopes.creditlimitchecker.application.shared.CustomResponseDTO;
 import br.com.emerlopes.creditlimitchecker.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.creditlimitchecker.domain.usecase.cliente.BuscarClientePorIdUseCase;
 import br.com.emerlopes.creditlimitchecker.domain.usecase.cliente.RegistrarClienteUseCase;
@@ -37,7 +37,6 @@ public class ClienteController {
             final @RequestHeader("Authorization") String token,
             final @RequestBody @Valid RegistrarClienteRequestDTO clienteRequestDTO
     ) {
-        log.info("Recebendo requisicao para gerar cartao");
         final ClienteDomainEntity clienteDomainEntity = ClienteDomainEntity
                 .builder()
                 .cpf(clienteRequestDTO.getCpf())
@@ -53,33 +52,32 @@ public class ClienteController {
 
         final ClienteDomainEntity idCartaoGerado = registrarClienteUseCase.execute(clienteDomainEntity);
 
-        log.info("Cliente registrado com sucesso");
-
         return ResponseEntity.status(HttpStatus.OK).body(
-                GerarCartaoResponseDTO.builder()
-                        .idCartao(idCartaoGerado.getId())
-                        .build()
+                new CustomResponseDTO<RegistrarClienteResponseDTO>().setData(
+                        RegistrarClienteResponseDTO.builder()
+                                .idCliente(idCartaoGerado.getId())
+                                .build()
+                )
         );
     }
 
-    @GetMapping("/{clienteId}")
+    @GetMapping("/{idCliente}")
     public ResponseEntity<?> buscarCliente(
-            final @PathVariable UUID clienteId
+            final @PathVariable UUID idCliente
     ) {
-        log.info("Recebendo requisicao para buscar cliente");
         final ClienteDomainEntity clienteDomainEntity = ClienteDomainEntity
                 .builder()
-                .id(clienteId)
+                .id(idCliente)
                 .build();
 
         final ClienteDomainEntity idClienteGerado = buscarClientePorIdUseCase.execute(clienteDomainEntity);
 
-        log.info("Cliente encontrado com sucesso");
-
         return ResponseEntity.status(HttpStatus.OK).body(
-                RegistrarClienteResponseDTO.builder()
-                        .idCliente(idClienteGerado.getId())
-                        .build()
+                new CustomResponseDTO<RegistrarClienteResponseDTO>().setData(
+                        RegistrarClienteResponseDTO.builder()
+                                .idCliente(idClienteGerado.getId())
+                                .build()
+                )
         );
     }
 }
