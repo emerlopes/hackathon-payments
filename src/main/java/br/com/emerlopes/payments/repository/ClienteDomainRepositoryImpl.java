@@ -1,8 +1,8 @@
 package br.com.emerlopes.payments.repository;
 
+import br.com.emerlopes.payments.application.exceptions.DatabasePersistenceException;
+import br.com.emerlopes.payments.application.exceptions.ResourceNotFoundException;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
-import br.com.emerlopes.payments.domain.exceptions.ClienteNaoEncontradoException;
-import br.com.emerlopes.payments.domain.exceptions.ClienteNaoRegistradoException;
 import br.com.emerlopes.payments.domain.repository.ClienteDomainRepository;
 import br.com.emerlopes.payments.infrastructure.database.entity.ClienteEntity;
 import br.com.emerlopes.payments.infrastructure.database.repository.ClienteRepository;
@@ -59,7 +59,7 @@ public class ClienteDomainRepositoryImpl implements ClienteDomainRepository {
                     .build();
         } catch (final Throwable throwable) {
             log.error("Erro ao registrar cliente", throwable);
-            throw new ClienteNaoRegistradoException("Erro ao registrar cliente");
+            throw new DatabasePersistenceException("Erro ao registrar cliente", throwable);
         }
     }
 
@@ -82,7 +82,7 @@ public class ClienteDomainRepositoryImpl implements ClienteDomainRepository {
                         .cartoes(List.of())
                         .build()
                 )
-                .orElseThrow(() -> new ClienteNaoEncontradoException("Cliente nao encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente nao encontrado"));
     }
 
     @Override
@@ -130,7 +130,7 @@ public class ClienteDomainRepositoryImpl implements ClienteDomainRepository {
                 .collect(Collectors.toList());
 
         if (clientes.isEmpty()) {
-            throw new ClienteNaoEncontradoException("Nenhum cliente encontrado.");
+            throw new ResourceNotFoundException("Nenhum cliente encontrado.");
         }
 
         return clientes;

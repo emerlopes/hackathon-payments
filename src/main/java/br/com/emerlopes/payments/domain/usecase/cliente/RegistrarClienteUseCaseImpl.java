@@ -1,7 +1,7 @@
 package br.com.emerlopes.payments.domain.usecase.cliente;
 
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
-import br.com.emerlopes.payments.domain.exceptions.ErroDeNegocioException;
+import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
 import br.com.emerlopes.payments.domain.repository.ClienteDomainRepository;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class RegistrarClienteUseCaseImpl implements RegistrarClienteUseCase {
 
         if (clienteJaRegistrado != null) {
             log.warn("Cliente já registrado: {}", clienteJaRegistrado.getId());
-            throw new ErroDeNegocioException("Cliente já registrado");
+            throw new BusinessExceptions("Cliente já registrado");
         }
 
         log.info("Registrando cliente");
