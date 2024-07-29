@@ -3,6 +3,7 @@ package br.com.emerlopes.payments.repository;
 import br.com.emerlopes.payments.application.exceptions.DatabasePersistenceException;
 import br.com.emerlopes.payments.application.exceptions.ResourceNotFoundException;
 import br.com.emerlopes.payments.application.shared.CartaoUtils;
+import br.com.emerlopes.payments.application.shared.CpfUtils;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.exceptions.*;
 import br.com.emerlopes.payments.domain.repository.CartaoDomainRepository;
@@ -103,7 +104,7 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
     }
 
     @Override
-    public List<CartaoDomainEntity> buscarCartoesPorCliente(
+    public List<CartaoDomainEntity> buscarCartoesClientePorId(
             final CartaoDomainEntity cartaoDomainEntity
     ) {
         try {
@@ -122,6 +123,36 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
                     .map(cartao -> CartaoDomainEntity.builder()
                             .id(cartao.getId())
                             .numero(CartaoUtils.mascararCartaoCredito(cartao.getNumero()))
+                            .limite(cartao.getLimite())
+                            .build())
+                    .toList();
+        } catch (final Throwable throwable) {
+            log.error("Erro ao buscar cartoes: {}", throwable.getMessage());
+            throw new DatabasePersistenceException("Erro nao esperado ao buscar cartoes por cliente", throwable);
+        }
+    }
+
+    @Override
+    public List<CartaoDomainEntity> buscarCartoesClientePorCpf(
+            final CartaoDomainEntity cartaoDomainEntity
+    ) {
+        try {
+            final var cpf = cartaoDomainEntity.getCpf();
+
+            final var cartoes = cartaoRepository.findByCpf(cpf);
+
+            if (cartoes.isEmpty()) {
+                log.info("Nenhum cartao encontrado para o cliente: {}", CpfUtils.mascararCpf(cpf));
+                throw new BusinessExceptions("Nenhum cartao encontrado para o cliente: " + CpfUtils.mascararCpf(cpf));
+            }
+
+            log.info("Cartoe(s) encontrado(s) para o cliente: {}", cartoes.get().size());
+
+            return cartoes.get().stream()
+                    .map(cartao -> CartaoDomainEntity.builder()
+                            .id(cartao.getId())
+                            .numero(CartaoUtils.mascararCartaoCredito(cartao.getNumero()))
+                            .limite(cartao.getLimite())
                             .build())
                     .toList();
         } catch (final Throwable throwable) {
