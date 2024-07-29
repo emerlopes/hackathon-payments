@@ -1,6 +1,5 @@
 package br.com.emerlopes.payments.domain.entity;
 
-import br.com.emerlopes.payments.infrastructure.database.entity.ClienteEntity;
 import br.com.emerlopes.payments.infrastructure.database.entity.PagamentoEntity;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +18,6 @@ public class CartaoDomainEntity {
     private BigDecimal limite;
     private LocalDate dataValidade;
     private String cvv;
-    private ClienteEntity cliente;
+    private ClienteDomainEntity cliente;
     private List<PagamentoEntity> pagamentos;
 }
