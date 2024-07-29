@@ -4,6 +4,7 @@ import br.com.emerlopes.payments.infrastructure.database.entity.CartaoEntity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ public class PagamentoDomainEntity {
     private String numero;
     private String dataValidade;
     private String cvv;
-    private Double valor;
+    private BigDecimal valor;
     private LocalDateTime dataPagamento;
     private CartaoEntity cartao;
 }

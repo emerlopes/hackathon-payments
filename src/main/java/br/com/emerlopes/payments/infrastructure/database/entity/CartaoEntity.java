@@ -21,6 +21,7 @@ public class CartaoEntity {
     private UUID id;
 
     private String cpf;
+    private String numero;
     private BigDecimal limite;
     private LocalDate dataValidade;
     private String cvv;

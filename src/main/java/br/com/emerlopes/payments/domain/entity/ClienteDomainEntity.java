@@ -1,6 +1,5 @@
 package br.com.emerlopes.payments.domain.entity;
 
-import br.com.emerlopes.payments.infrastructure.database.entity.CartaoEntity;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,5 +19,5 @@ public class ClienteDomainEntity {
     private String estado;
     private String cep;
     private String pais;
-    private List<CartaoEntity> cartoes;
+    private List<CartaoDomainEntity> cartoes;
 }
