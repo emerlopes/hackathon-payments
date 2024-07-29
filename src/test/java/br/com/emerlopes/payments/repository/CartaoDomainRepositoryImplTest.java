@@ -5,7 +5,6 @@ import br.com.emerlopes.payments.application.exceptions.ResourceNotFoundExceptio
 import br.com.emerlopes.payments.application.shared.CartaoUtils;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
-import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
 import br.com.emerlopes.payments.infrastructure.database.entity.CartaoEntity;
 import br.com.emerlopes.payments.infrastructure.database.entity.ClienteEntity;
 import br.com.emerlopes.payments.infrastructure.database.repository.CartaoRepository;
@@ -190,11 +189,11 @@ public class CartaoDomainRepositoryImplTest {
     }
 
     @Test
-    public void testBuscarCartoesPorCliente_Success() {
+    public void testBuscarCartoesClientePorId_Success() {
         List<CartaoEntity> cartoes = Arrays.asList(cartaoEntity);
         Mockito.when(cartaoRepository.findByClienteId(eq(cartaoDomainEntity.getIdCliente()))).thenReturn(Optional.of(cartoes));
 
-        List<CartaoDomainEntity> result = cartaoDomainRepository.buscarCartoesPorCliente(cartaoDomainEntity);
+        List<CartaoDomainEntity> result = cartaoDomainRepository.buscarCartoesClientePorId(cartaoDomainEntity);
 
         assertNotNull(result);
         assertEquals(1, result.size());
@@ -203,22 +202,22 @@ public class CartaoDomainRepositoryImplTest {
     }
 
     @Test
-    public void testBuscarCartoesPorCliente_NenhumCartao() {
+    public void testBuscarCartoesClientePorId_NenhumCartao() {
         Mockito.when(cartaoRepository.findByClienteId(any(UUID.class))).thenReturn(Optional.empty());
 
         DatabasePersistenceException exception = assertThrows(DatabasePersistenceException.class, () -> {
-            cartaoDomainRepository.buscarCartoesPorCliente(cartaoDomainEntity);
+            cartaoDomainRepository.buscarCartoesClientePorId(cartaoDomainEntity);
         });
 
         assertEquals("Erro nao esperado ao buscar cartoes por cliente", exception.getMessage());
     }
 
     @Test
-    public void testBuscarCartoesPorCliente_ErroInesperado() {
+    public void testBuscarCartoesClientePorId_ErroInesperado() {
         Mockito.when(cartaoRepository.findByClienteId(any(UUID.class))).thenThrow(new RuntimeException("Erro inesperado"));
 
         DatabasePersistenceException exception = assertThrows(DatabasePersistenceException.class, () -> {
-            cartaoDomainRepository.buscarCartoesPorCliente(cartaoDomainEntity);
+            cartaoDomainRepository.buscarCartoesClientePorId(cartaoDomainEntity);
         });
 
         assertEquals("Erro nao esperado ao buscar cartoes por cliente", exception.getMessage());
