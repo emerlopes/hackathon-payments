@@ -20,9 +20,10 @@ public class RegistrarPagamentoCartaoUseCaseImpl implements RegistrarPagamentoCa
     }
 
     @Override
-    public List<PagamentoDomainEntity> execute(
+    public PagamentoDomainEntity execute(
             final PagamentoDomainEntity pagamentoDomainEntity
     ) {
-        return null;
+        return pagamentoDomainRepository.registrarPagamentoCartao(pagamentoDomainEntity);
     }
+
 }

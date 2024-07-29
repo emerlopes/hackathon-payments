@@ -5,7 +5,7 @@ import br.com.emerlopes.payments.domain.entity.PagamentoDomainEntity;
 import java.util.List;
 
 public interface PagamentoDomainRepository {
-    PagamentoDomainEntity save(final PagamentoDomainEntity pagamentoDomainEntity);
+    PagamentoDomainEntity registrarPagamentoCartao(final PagamentoDomainEntity pagamentoDomainEntity);
 
     List<PagamentoDomainEntity> findByCpf(final PagamentoDomainEntity pagamentoDomainEntity);
 }
