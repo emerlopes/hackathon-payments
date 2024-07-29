@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 public class BuscaCartaoResponseDTO {
@@ -12,4 +14,5 @@ public class BuscaCartaoResponseDTO {
     private String idCartao;
 
     private String numero;
+    private BigDecimal limite;
 }

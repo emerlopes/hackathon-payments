@@ -73,6 +73,7 @@ public class CartaoController {
         final List<BuscaCartaoResponseDTO> cartoes = cartaoGerado.stream().map(cartao -> BuscaCartaoResponseDTO.builder()
                 .idCartao(cartao.getId().toString())
                 .numero(cartao.getNumero())
+                .limite(cartao.getLimite())
                 .build()
         ).toList();
 
