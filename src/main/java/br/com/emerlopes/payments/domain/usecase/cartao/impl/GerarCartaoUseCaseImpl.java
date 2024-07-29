@@ -40,7 +40,7 @@ public class GerarCartaoUseCaseImpl implements GerarCartaoUseCase {
         );
 
         if (jaPossuiDoisCartoes) {
-            log.error("Cliente ja possui dois cartoes: {}", cpfMascarado);
+            log.error("Cliente ja possui dois cartoes");
             throw new BusinessExceptions("Cliente ja possui dois cartoes");
         }
 
