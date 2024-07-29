@@ -24,7 +24,7 @@ public class BuscarCartoesPorClienteUseCaseImpl implements BuscarCartoesPorClien
     public List<CartaoDomainEntity> execute(
             final CartaoDomainEntity cartaoDomainEntity
     ) {
-        log.info("Buscando cartoes do cliente: " + cartaoDomainEntity.getIdCliente());
+        log.info("Buscando cartoes do cliente: {}", cartaoDomainEntity.getIdCliente());
         return cartaoDomainRepository.BuscarCartoesPorCliente(cartaoDomainEntity);
     }
 }
