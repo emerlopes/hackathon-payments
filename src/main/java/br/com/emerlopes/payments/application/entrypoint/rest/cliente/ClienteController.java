@@ -8,7 +8,6 @@ import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.payments.domain.usecase.cliente.BuscarClientePorIdUseCase;
 import br.com.emerlopes.payments.domain.usecase.cliente.RegistrarClienteUseCase;
 import jakarta.validation.Valid;
-import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,11 +15,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+// TODO: Verificar possibilidade de usar o nome da rota no plural
+
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
-    private final static Logger log = org.slf4j.LoggerFactory.getLogger(ClienteController.class);
     private final RegistrarClienteUseCase registrarClienteUseCase;
     private final BuscarClientePorIdUseCase buscarClientePorIdUseCase;
 
