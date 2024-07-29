@@ -1,8 +1,8 @@
 package br.com.emerlopes.payments.repository;
 
+import br.com.emerlopes.payments.application.exceptions.DatabasePersistenceException;
+import br.com.emerlopes.payments.application.exceptions.ResourceNotFoundException;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
-import br.com.emerlopes.payments.domain.exceptions.ClienteNaoEncontradoException;
-import br.com.emerlopes.payments.domain.exceptions.ClienteNaoRegistradoException;
 import br.com.emerlopes.payments.infrastructure.database.entity.ClienteEntity;
 import br.com.emerlopes.payments.infrastructure.database.repository.ClienteRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -88,7 +88,7 @@ public class ClienteDomainRepositoryImplTest {
         Mockito.when(clienteRepository.save(any(ClienteEntity.class)))
                 .thenThrow(new RuntimeException("Erro ao registrar cliente"));
 
-        ClienteNaoRegistradoException exception = assertThrows(ClienteNaoRegistradoException.class, () -> {
+        DatabasePersistenceException exception = assertThrows(DatabasePersistenceException.class, () -> {
             clienteDomainRepository.registrarCliente(clienteDomainEntity);
         });
 
@@ -150,7 +150,7 @@ public class ClienteDomainRepositoryImplTest {
     void testBuscarClientes_NotFound() {
         Mockito.when(clienteRepository.findAll()).thenReturn(List.of());
 
-        ClienteNaoEncontradoException exception = assertThrows(ClienteNaoEncontradoException.class, () -> {
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
             clienteDomainRepository.buscarClientes(clienteDomainEntity);
         });
 
@@ -181,7 +181,7 @@ public class ClienteDomainRepositoryImplTest {
         Mockito.when(clienteRepository.findById(eq(clienteDomainEntity.getId())))
                 .thenReturn(Optional.empty());
 
-        ClienteNaoEncontradoException exception = assertThrows(ClienteNaoEncontradoException.class, () -> {
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
             clienteDomainRepository.buscarClientePorId(clienteDomainEntity);
         });
 
