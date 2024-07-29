@@ -1,7 +1,7 @@
 package br.com.emerlopes.payments.domain.usecase.cliente;
 
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
-import br.com.emerlopes.payments.domain.exceptions.ErroDeNegocioException;
+import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
 import br.com.emerlopes.payments.domain.repository.ClienteDomainRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -89,7 +89,7 @@ public class RegistrarClienteUseCaseImplTest {
         Mockito.when(clienteDomainRepository.buscarClientePorCpf(any(ClienteDomainEntity.class)))
                 .thenReturn(existingClienteDomainEntity);
 
-        ErroDeNegocioException exception = assertThrows(ErroDeNegocioException.class, () -> {
+        BusinessExceptions exception = assertThrows(BusinessExceptions.class, () -> {
             registrarClienteUseCase.execute(clienteDomainEntity);
         });
 
