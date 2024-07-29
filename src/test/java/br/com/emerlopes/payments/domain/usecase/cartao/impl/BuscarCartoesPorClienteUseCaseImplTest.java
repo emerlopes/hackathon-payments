@@ -47,7 +47,7 @@ public class BuscarCartoesPorClienteUseCaseImplTest {
     @Test
     public void testExecute_Success() {
         List<CartaoDomainEntity> cartoes = Collections.singletonList(cartaoDomainEntity);
-        Mockito.when(cartaoDomainRepository.buscarCartoesPorCliente(any(CartaoDomainEntity.class)))
+        Mockito.when(cartaoDomainRepository.buscarCartoesClientePorId(any(CartaoDomainEntity.class)))
                 .thenReturn(cartoes);
 
         List<CartaoDomainEntity> result = buscarCartoesPorClienteUseCase.execute(cartaoDomainEntity);
@@ -64,7 +64,7 @@ public class BuscarCartoesPorClienteUseCaseImplTest {
 
     @Test
     public void testExecute_NoCardsFound() {
-        Mockito.when(cartaoDomainRepository.buscarCartoesPorCliente(any(CartaoDomainEntity.class)))
+        Mockito.when(cartaoDomainRepository.buscarCartoesClientePorId(any(CartaoDomainEntity.class)))
                 .thenReturn(Collections.emptyList());
 
         List<CartaoDomainEntity> result = buscarCartoesPorClienteUseCase.execute(cartaoDomainEntity);
