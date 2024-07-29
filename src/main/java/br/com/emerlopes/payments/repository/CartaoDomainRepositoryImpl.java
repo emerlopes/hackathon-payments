@@ -112,7 +112,7 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
 
             if (cartoes.isEmpty()) {
                 log.info("Nenhum cartao encontrado para o cliente: {}", clienteId);
-                throw new CartaoNaoEncontradoException("Nenhum cartao encontrado para o cliente: " + clienteId);
+                throw new BusinessExceptions("Nenhum cartao encontrado para o cliente: " + clienteId);
             }
 
             log.info("Cartoe(s) encontrado(s) para o cliente: {}", cartoes.get().size());
