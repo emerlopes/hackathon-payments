@@ -59,7 +59,9 @@ public class CartaoController {
     }
 
     @GetMapping("/{idCliente}")
+    @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> buscarCartoesCliente(
+            final @RequestHeader("Authorization") String authorization,
             final @PathVariable String idCliente
     ) {
         final CartaoDomainEntity cartaoDomainEntity = CartaoDomainEntity
