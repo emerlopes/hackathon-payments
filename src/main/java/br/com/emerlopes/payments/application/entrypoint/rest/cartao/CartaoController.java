@@ -7,6 +7,7 @@ import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.usecase.cartao.GerarCartaoUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -26,7 +27,9 @@ public class CartaoController {
 
 
     @PostMapping
+    @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> gerarCartao(
+            final @RequestHeader("Authorization") String authorization,
             final @RequestBody GerarCartaoRequestDTO cartaoRequestDTO
     ) {
         final CartaoDomainEntity cartaoDomainEntity = CartaoDomainEntity
