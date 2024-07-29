@@ -1,5 +1,6 @@
 package br.com.emerlopes.payments.repository;
 
+import br.com.emerlopes.payments.application.exceptions.DatabasePersistenceException;
 import br.com.emerlopes.payments.application.exceptions.ResourceNotFoundException;
 import br.com.emerlopes.payments.application.shared.CartaoUtils;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
@@ -55,7 +56,7 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
                     .build();
         } catch (final Throwable throwable) {
             log.error("Erro ao salvar cartao: {}", throwable.getMessage());
-            throw new ErroGeracaoCartaoException("Erro ao salvar cartao");
+            throw new DatabasePersistenceException("Erro ao salvar cartao", throwable);
         }
 
     }
@@ -87,7 +88,7 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
 
             if (cartao.isEmpty()) {
                 log.info("Cartao nao encontrado: {}", cartaoId);
-                throw new CartaoNaoEncontradoException("Cartao nao encontrado: " + cartaoId);
+                throw new BusinessExceptions("Cartao nao encontrado: " + cartaoId);
             }
 
             log.info("Cartao encontrado: {}", cartaoId);
@@ -97,12 +98,12 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
                     .build();
         } catch (final Throwable throwable) {
             log.error("Erro ao buscar cartao: {}", throwable.getMessage());
-            throw new MetodoBuscarCartaoPorIdException("Erro nao esperado ao buscar cartao por id");
+            throw new DatabasePersistenceException("Erro nao esperado ao buscar cartao por id", throwable);
         }
     }
 
     @Override
-    public List<CartaoDomainEntity> BuscarCartoesPorCliente(
+    public List<CartaoDomainEntity> buscarCartoesPorCliente(
             final CartaoDomainEntity cartaoDomainEntity
     ) {
         try {
@@ -125,7 +126,7 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
                     .toList();
         } catch (final Throwable throwable) {
             log.error("Erro ao buscar cartoes: {}", throwable.getMessage());
-            throw new MetodoBuscarCartoesPorClienteException("Erro nao esperado ao buscar cartoes por cliente");
+            throw new DatabasePersistenceException("Erro nao esperado ao buscar cartoes por cliente", throwable);
         }
     }
 

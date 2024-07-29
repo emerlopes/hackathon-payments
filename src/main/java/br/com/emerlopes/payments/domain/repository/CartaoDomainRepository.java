@@ -11,5 +11,5 @@ public interface CartaoDomainRepository {
 
     CartaoDomainEntity buscarCartaoPorId(final CartaoDomainEntity cartaoDomainEntity);
 
-    List<CartaoDomainEntity> BuscarCartoesPorCliente(final CartaoDomainEntity cartaoDomainEntity);
+    List<CartaoDomainEntity> buscarCartoesPorCliente(final CartaoDomainEntity cartaoDomainEntity);
 }
