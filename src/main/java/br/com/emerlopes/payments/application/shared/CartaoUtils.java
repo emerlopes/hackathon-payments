@@ -10,9 +10,7 @@ public class CartaoUtils {
         String ultimosQuatroDigitos = numeroCartao.substring(numeroCartao.length() - 4);
         StringBuilder mascarado = new StringBuilder();
 
-        for (int i = 0; i < numeroCartao.length() - 4; i++) {
-            mascarado.append('*');
-        }
+        mascarado.append("*".repeat(numeroCartao.length() - 4));
 
         mascarado.append(ultimosQuatroDigitos);
         return mascarado.toString();
