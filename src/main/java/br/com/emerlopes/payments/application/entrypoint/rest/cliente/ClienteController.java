@@ -1,5 +1,6 @@
 package br.com.emerlopes.payments.application.entrypoint.rest.cliente;
 
+import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.BuscarClienteResponseDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.RegistrarClienteRequestDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.RegistrarClienteResponseDTO;
 import br.com.emerlopes.payments.application.shared.CustomResponseDTO;
@@ -32,9 +33,9 @@ public class ClienteController {
     }
 
     @PostMapping
-    @PreAuthorize("@securityService.isTokenValid(#token)")
+    @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> registrarCliente(
-            final @RequestHeader("Authorization") String token,
+            final @RequestHeader("Authorization") String authorization,
             final @RequestBody @Valid RegistrarClienteRequestDTO clienteRequestDTO
     ) {
         final ClienteDomainEntity clienteDomainEntity = ClienteDomainEntity
@@ -62,7 +63,9 @@ public class ClienteController {
     }
 
     @GetMapping("/{idCliente}")
+    @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> buscarCliente(
+            final @RequestHeader("Authorization") String authorization,
             final @PathVariable UUID idCliente
     ) {
         final ClienteDomainEntity clienteDomainEntity = ClienteDomainEntity
@@ -70,12 +73,14 @@ public class ClienteController {
                 .id(idCliente)
                 .build();
 
-        final ClienteDomainEntity idClienteGerado = buscarClientePorIdUseCase.execute(clienteDomainEntity);
+        final ClienteDomainEntity cliente = buscarClientePorIdUseCase.execute(clienteDomainEntity);
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                new CustomResponseDTO<RegistrarClienteResponseDTO>().setData(
-                        RegistrarClienteResponseDTO.builder()
-                                .idCliente(idClienteGerado.getId())
+                new CustomResponseDTO<BuscarClienteResponseDTO>().setData(
+                        BuscarClienteResponseDTO.builder()
+                                .nome(cliente.getNome())
+                                .email(cliente.getEmail())
+                                .idCliente(cliente.getId())
                                 .build()
                 )
         );
