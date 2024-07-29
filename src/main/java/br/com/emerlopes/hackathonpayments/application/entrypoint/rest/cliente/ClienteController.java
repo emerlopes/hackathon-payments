@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -31,7 +32,9 @@ public class ClienteController {
     }
 
     @PostMapping
+    @PreAuthorize("@securityService.isTokenValid(#token)")
     public ResponseEntity<?> registrarCliente(
+            final @RequestHeader("Authorization") String token,
             final @RequestBody @Valid RegistrarClienteRequestDTO clienteRequestDTO
     ) {
         log.info("Recebendo requisicao para gerar cartao");
