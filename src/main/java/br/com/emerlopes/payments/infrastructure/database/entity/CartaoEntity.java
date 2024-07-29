@@ -20,7 +20,7 @@ public class CartaoEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    private String numero;
+    private String cpf;
     private BigDecimal limite;
     private LocalDate dataValidade;
     private String cvv;

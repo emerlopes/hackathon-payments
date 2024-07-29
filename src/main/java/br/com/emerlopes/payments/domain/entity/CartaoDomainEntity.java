@@ -15,7 +15,7 @@ import java.util.UUID;
 public class CartaoDomainEntity {
     private UUID id;
     private UUID idCliente;
-    private String numero;
+    private String cpf;
     private BigDecimal limite;
     private LocalDate dataValidade;
     private String cvv;
