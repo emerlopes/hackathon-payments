@@ -115,7 +115,7 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
                 throw new CartaoNaoEncontradoException("Nenhum cartao encontrado para o cliente: " + clienteId);
             }
 
-            log.info("Cartoe(s) encontrado(s) para o cliente: {}", clienteId);
+            log.info("Cartoe(s) encontrado(s) para o cliente: {}", cartoes.get().size());
 
             return cartoes.get().stream()
                     .map(cartao -> CartaoDomainEntity.builder()
