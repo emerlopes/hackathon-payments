@@ -2,7 +2,6 @@ package br.com.emerlopes.payments.application.exceptions;
 
 import br.com.emerlopes.payments.application.shared.CustomErrorResponse;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
-import br.com.emerlopes.payments.domain.exceptions.ErroDeNegocioException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +23,6 @@ public class GlobalExceptionHandler {
         StringBuilder message = new StringBuilder();
         ex.getConstraintViolations().forEach(violation -> message.append(violation.getMessage()).append("; "));
         return new ResponseEntity<>(message.toString(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(ErroDeNegocioException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ResponseEntity<String> handleBusinessException(
-            final ErroDeNegocioException ex
-    ) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(InvalidTokenException.class)
