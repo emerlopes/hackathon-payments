@@ -1,15 +1,18 @@
 package br.com.emerlopes.payments.application.entrypoint.rest.cartao;
 
+import br.com.emerlopes.payments.application.entrypoint.rest.cartao.dto.BuscaCartaoResponseDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cartao.dto.GerarCartaoRequestDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cartao.dto.GerarCartaoResponseDTO;
 import br.com.emerlopes.payments.application.shared.CustomResponseDTO;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
+import br.com.emerlopes.payments.domain.usecase.cartao.BuscarCartoesPorClienteUseCase;
 import br.com.emerlopes.payments.domain.usecase.cartao.GerarCartaoUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -18,11 +21,14 @@ import java.util.UUID;
 public class CartaoController {
 
     private final GerarCartaoUseCase gerarCartaoUseCase;
+    private final BuscarCartoesPorClienteUseCase buscarCartoesPorClienteUseCase;
 
     public CartaoController(
-            final GerarCartaoUseCase gerarCartaoUseCase
+            final GerarCartaoUseCase gerarCartaoUseCase,
+            final BuscarCartoesPorClienteUseCase buscarCartoesPorClienteUseCase
     ) {
         this.gerarCartaoUseCase = gerarCartaoUseCase;
+        this.buscarCartoesPorClienteUseCase = buscarCartoesPorClienteUseCase;
     }
 
 
@@ -52,23 +58,24 @@ public class CartaoController {
         );
     }
 
-    @GetMapping
-    public ResponseEntity<?> getCartao(
-            final @PathVariable UUID cartaoId
+    @GetMapping("/{idCliente}")
+    public ResponseEntity<?> buscarCartoesCliente(
+            final @PathVariable String idCliente
     ) {
         final CartaoDomainEntity cartaoDomainEntity = CartaoDomainEntity
                 .builder()
-                .id(cartaoId)
+                .idCliente(UUID.fromString(idCliente))
                 .build();
 
-        final CartaoDomainEntity idCartaoGerado = gerarCartaoUseCase.execute(cartaoDomainEntity);
+        final List<CartaoDomainEntity> cartaoGerado = buscarCartoesPorClienteUseCase.execute(cartaoDomainEntity);
+        final List<BuscaCartaoResponseDTO> cartoes = cartaoGerado.stream().map(cartao -> BuscaCartaoResponseDTO.builder()
+                .idCartao(cartao.getId().toString())
+                .numero(cartao.getNumero())
+                .build()
+        ).toList();
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                new CustomResponseDTO<>().setData(
-                        GerarCartaoResponseDTO.builder()
-                                .idCartao(idCartaoGerado.getId())
-                                .build()
-                )
+                new CustomResponseDTO<List<BuscaCartaoResponseDTO>>().setData(cartoes)
         );
     }
 }

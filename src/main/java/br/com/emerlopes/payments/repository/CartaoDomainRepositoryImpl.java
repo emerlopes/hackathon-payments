@@ -1,6 +1,7 @@
 package br.com.emerlopes.payments.repository;
 
 import br.com.emerlopes.payments.application.exceptions.ResourceNotFoundException;
+import br.com.emerlopes.payments.application.shared.CartaoUtils;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.exceptions.*;
 import br.com.emerlopes.payments.domain.repository.CartaoDomainRepository;
@@ -119,6 +120,7 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
             return cartoes.get().stream()
                     .map(cartao -> CartaoDomainEntity.builder()
                             .id(cartao.getId())
+                            .numero(CartaoUtils.mascararCartaoCredito(cartao.getNumero()))
                             .build())
                     .toList();
         } catch (final Throwable throwable) {
