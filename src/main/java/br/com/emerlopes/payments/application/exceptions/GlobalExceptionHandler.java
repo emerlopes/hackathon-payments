@@ -2,6 +2,8 @@ package br.com.emerlopes.payments.application.exceptions;
 
 import br.com.emerlopes.payments.application.shared.CustomErrorResponse;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
+import br.com.emerlopes.payments.domain.exceptions.LimiteCartaoBusinessExceptions;
+import br.com.emerlopes.payments.domain.exceptions.SaldoBusinessExceptions;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,20 +29,51 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<Object> handleInvalidTokenException(
-            final InvalidTokenException ex, WebRequest request
+            final InvalidTokenException ex
     ) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(BusinessExceptions.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<CustomErrorResponse> handleBusinessExceptions(BusinessExceptions ex, WebRequest request) {
+    public ResponseEntity<CustomErrorResponse> handleBusinessExceptions(
+            final BusinessExceptions ex,
+            final WebRequest request
+    ) {
         CustomErrorResponse errorDetails = new CustomErrorResponse(
                 LocalDateTime.now(),
                 ex.getMessage(),
                 request.getDescription(false)
         );
         return new ResponseEntity<>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(SaldoBusinessExceptions.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<CustomErrorResponse> handleSaldoBusinessExceptions(
+            final SaldoBusinessExceptions ex,
+            final WebRequest request
+    ) {
+        CustomErrorResponse errorDetails = new CustomErrorResponse(
+                LocalDateTime.now(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.PAYMENT_REQUIRED);
+    }
+
+    @ExceptionHandler(LimiteCartaoBusinessExceptions.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<CustomErrorResponse> handleLimiteCartaoBusinessExceptions(
+            final LimiteCartaoBusinessExceptions ex,
+            final WebRequest request
+    ) {
+        CustomErrorResponse errorDetails = new CustomErrorResponse(
+                LocalDateTime.now(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
 
 }
