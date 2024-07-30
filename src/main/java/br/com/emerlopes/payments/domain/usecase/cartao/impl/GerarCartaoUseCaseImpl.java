@@ -4,6 +4,7 @@ import br.com.emerlopes.payments.application.shared.CpfUtils;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
+import br.com.emerlopes.payments.domain.exceptions.LimiteCartaoBusinessExceptions;
 import br.com.emerlopes.payments.domain.repository.CartaoDomainRepository;
 import br.com.emerlopes.payments.domain.repository.ClienteDomainRepository;
 import br.com.emerlopes.payments.domain.usecase.cartao.GerarCartaoUseCase;
@@ -41,7 +42,16 @@ public class GerarCartaoUseCaseImpl implements GerarCartaoUseCase {
 
         if (jaPossuiDoisCartoes) {
             log.error("Cliente ja possui dois cartoes");
-            throw new BusinessExceptions("Cliente ja possui dois cartoes");
+            throw new LimiteCartaoBusinessExceptions("Cliente ja possui dois cartoes");
+        }
+
+        final boolean jaPossuiCartaoCadastrado = cartaoDomainRepository.jaPossuiCartaoCadastrado(
+                cartaoDomainEntity
+        );
+
+        if (jaPossuiCartaoCadastrado) {
+            log.error("Cliente ja possui cartao cadastrado");
+            throw new BusinessExceptions("Cliente ja possui cartao cadastrado");
         }
 
         final ClienteDomainEntity clienteDomainEntity = clienteDomainRepository.buscarClientePorCpf(
