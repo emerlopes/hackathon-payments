@@ -47,8 +47,8 @@ public class RegistrarPagamentoCartaoUseCaseImpl implements RegistrarPagamentoCa
         }
 
         if (valorPagamento.compareTo(BigDecimal.ZERO) <= 0) {
-            log.error("Valor de pagamento invalido: {}", valorPagamento);
-            throw new BusinessExceptions("Valor de pagamento invalido: " + valorPagamento);
+            log.error("Valor de pagamento nao pode ser menor ou igual a zero: {}", valorPagamento);
+            throw new BusinessExceptions("Valor de pagamento nao pode ser menor ou igual a zero: " + valorPagamento);
         }
 
         if (pagamentoDomainEntity.getValor().compareTo(cartoesCliente.get(0).getLimite()) > 0) {
