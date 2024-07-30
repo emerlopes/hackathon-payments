@@ -79,6 +79,22 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
     }
 
     @Override
+    public boolean jaPossuiCartaoCadastrado(
+            final CartaoDomainEntity cartaoDomainEntity
+    ) {
+        final String numeroCartao = cartaoDomainEntity.getNumero();
+
+        final Optional<CartaoEntity> cartao = cartaoRepository.findByNumero(numeroCartao);
+
+        if (cartao.isEmpty()) {
+            log.info("Cartao nao encontrado: {}", numeroCartao);
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     public CartaoDomainEntity buscarCartaoPorId(
             final CartaoDomainEntity cartaoDomainEntity
     ) {
@@ -159,6 +175,55 @@ public class CartaoDomainRepositoryImpl implements CartaoDomainRepository {
             log.error("Erro ao buscar cartoes: {}", throwable.getMessage());
             throw new DatabasePersistenceException("Erro nao esperado ao buscar cartoes por cliente", throwable);
         }
+    }
+
+    @Override
+    public Optional<CartaoDomainEntity> buscarCartaoClientePorNumero(
+            final CartaoDomainEntity cartaoDomainEntity
+    ) {
+        try {
+            final var numeroCartao = cartaoDomainEntity.getNumero();
+
+            final var cartao = cartaoRepository.findByNumero(numeroCartao);
+
+            if (cartao.isEmpty()) {
+                log.info("Cartao nao encontrado: {}", numeroCartao);
+                throw new BusinessExceptions("Cartao nao encontrado: " + numeroCartao);
+            }
+
+            log.info("Cartao encontrado: {}", CartaoUtils.mascararCartaoCredito(numeroCartao));
+
+            return Optional.of(
+                    CartaoDomainEntity.builder()
+                            .id(cartao.get().getId())
+                            .cpf(CpfUtils.mascararCpf(cartao.get().getCpf()))
+                            .numero(CartaoUtils.mascararCartaoCredito(cartao.get().getNumero()))
+                            .limite(cartao.get().getLimite())
+                            .dataValidade(cartao.get().getDataValidade())
+                            .cvv(cartao.get().getCvv())
+                            .build()
+            );
+        } catch (final Throwable throwable) {
+            log.error("Erro ao buscar cartao: {}", throwable.getMessage());
+            throw new DatabasePersistenceException("Erro nao esperado ao buscar cartao por numero", throwable);
+        }
+    }
+
+    @Override
+    public Void atualizarParaNovoLimiteCartaoPorNumero(
+            final CartaoDomainEntity cartaoDomainEntity
+    ) {
+
+        final String numeroCartao = cartaoDomainEntity.getNumero();
+
+        final CartaoEntity cartaoEntity = cartaoRepository.findByNumero(numeroCartao)
+                .orElseThrow(() -> new ResourceNotFoundException("Cartao nao encontrado"));
+
+        cartaoEntity.setLimite(cartaoDomainEntity.getLimite());
+
+        final CartaoEntity cartaoAtualziado = cartaoRepository.save(cartaoEntity);
+
+        return null;
     }
 
     private List<CartaoEntity> isCartoesEmpty(Optional<List<CartaoEntity>> cartao) {

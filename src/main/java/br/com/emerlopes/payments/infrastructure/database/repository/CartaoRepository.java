@@ -11,4 +11,8 @@ public interface CartaoRepository extends JpaRepository<CartaoEntity, UUID> {
     Optional<List<CartaoEntity>> findByClienteId(final UUID clienteId);
 
     Optional<List<CartaoEntity>> findByCpf(final String cpf);
+
+    Optional<CartaoEntity> findByNumero(final String numero);
+
+
 }
