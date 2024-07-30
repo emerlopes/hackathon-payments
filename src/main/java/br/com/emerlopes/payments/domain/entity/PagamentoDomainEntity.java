@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ public class PagamentoDomainEntity {
     private UUID id;
     private String cpf;
     private String numero;
-    private String dataValidade;
+    private LocalDate dataValidade;
     private String cvv;
     private BigDecimal valor;
     private LocalDateTime dataPagamento;
