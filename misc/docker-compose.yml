@@ -19,7 +19,7 @@ services:
     image: emerlopes95/hackathonauth:latest
     container_name: hackathonauth
     ports:
-      - "8085:8085"
+      - "8080:8080"
     networks:
       - rede
 
@@ -27,7 +27,7 @@ services:
     image: emerlopes95/hackathon-payments:latest
     container_name: hackathon-payments
     ports:
-      - "8086:8086"
+      - "8081:8081"
     networks:
       - rede
 
