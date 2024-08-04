@@ -23,9 +23,9 @@ services:
     networks:
       - rede
 
-  creditlimitchecker:
-    image: emerlopes95/creditlimitchecker:latest
-    container_name: creditlimitchecker
+  hackathon-payments:
+    image: emerlopes95/hackathon-payments:latest
+    container_name: hackathon-payments
     ports:
       - "8086:8086"
     networks:
