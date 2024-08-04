@@ -29,7 +29,7 @@ public class ConverterTest {
                 .id(UUID.randomUUID())
                 .cpf("12345678900")
                 .numero("1234567890123456")
-                .dataValidade("12/25")
+                .dataValidade(LocalDate.of(2025, 12, 31))
                 .cvv("123")
                 .valor(new BigDecimal("150.00"))
                 .dataPagamento(LocalDateTime.now())
