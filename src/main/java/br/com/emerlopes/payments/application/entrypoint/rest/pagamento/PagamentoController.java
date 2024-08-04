@@ -72,16 +72,14 @@ public class PagamentoController {
         final List<PagamentoDomainEntity> pagamentos = buscarPagamentosCartaoUseCase.execute(pagamentoDomainEntity);
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                new CustomResponseDTO<List<BuscarPagamentosCartaoResponseDTO>>().setData(
-                        pagamentos.stream().map(
-                                        pag -> BuscarPagamentosCartaoResponseDTO.builder()
-                                                .valor(pag.getValor())
-                                                .descricao(pag.getDescricao())
-                                                .metodoPagamento(MetodoPagamentoEnum.fromDescricao(pag.getMetodoPagamento()))
-                                                .statusPagamento(StatusPagamentoEnum.fromDescricao(pag.getStatusPagamento()))
-                                                .build())
-                                .toList())
-        );
+                pagamentos.stream().map(
+                                pag -> BuscarPagamentosCartaoResponseDTO.builder()
+                                        .valor(pag.getValor())
+                                        .descricao(pag.getDescricao())
+                                        .metodoPagamento(MetodoPagamentoEnum.fromDescricao(pag.getMetodoPagamento()))
+                                        .statusPagamento(StatusPagamentoEnum.fromDescricao(pag.getStatusPagamento()))
+                                        .build())
+                        .toList());
     }
 
 }
