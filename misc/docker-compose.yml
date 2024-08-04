@@ -1,15 +1,29 @@
 version: '3.8'
 
 services:
-  postgres:
+  postgres-auth:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres-auth
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: hackathon
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rede
+
+  postgres-payment:
+    image: postgres:latest
+    container_name: postgres-payment
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: hackathon
+    ports:
+      - "5433:5433"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
