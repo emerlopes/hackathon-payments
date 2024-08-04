@@ -17,7 +17,7 @@ import java.util.UUID;
 
 
 @RestController
-@RequestMapping("api/cartoes")
+@RequestMapping("api/cartao")
 public class CartaoController {
 
     private final GerarCartaoUseCase gerarCartaoUseCase;
@@ -50,11 +50,9 @@ public class CartaoController {
         final CartaoDomainEntity idCartaoGerado = gerarCartaoUseCase.execute(cartaoDomainEntity);
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                new CustomResponseDTO<>().setData(
-                        GerarCartaoResponseDTO.builder()
-                                .idCartao(idCartaoGerado.getId())
-                                .build()
-                )
+                GerarCartaoResponseDTO.builder()
+                        .idCartao(idCartaoGerado.getId())
+                        .build()
         );
     }
 

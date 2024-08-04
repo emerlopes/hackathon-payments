@@ -51,11 +51,9 @@ public class PagamentoController {
         final PagamentoDomainEntity chavePagamento = registrarPagamentoCartaoUseCase.execute(pagamentoDomainEntity);
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                new CustomResponseDTO<RegistrarPagamentoResponseDTO>().setData(
-                        RegistrarPagamentoResponseDTO.builder()
-                                .chavePagamento(chavePagamento.getId())
-                                .build()
-                )
+                RegistrarPagamentoResponseDTO.builder()
+                        .chavePagamento(chavePagamento.getId())
+                        .build()
         );
     }
 

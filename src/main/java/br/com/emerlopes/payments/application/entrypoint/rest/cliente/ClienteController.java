@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-// TODO: Verificar possibilidade de usar o nome da rota no plural
-
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/api/cliente")
 public class ClienteController {
 
     private final RegistrarClienteUseCase registrarClienteUseCase;
@@ -54,11 +52,9 @@ public class ClienteController {
         final ClienteDomainEntity idCartaoGerado = registrarClienteUseCase.execute(clienteDomainEntity);
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                new CustomResponseDTO<RegistrarClienteResponseDTO>().setData(
-                        RegistrarClienteResponseDTO.builder()
-                                .idCliente(idCartaoGerado.getId())
-                                .build()
-                )
+                RegistrarClienteResponseDTO.builder()
+                        .idCliente(idCartaoGerado.getId())
+                        .build()
         );
     }
 
