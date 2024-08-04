@@ -57,6 +57,9 @@ public class PagamentoDomainRepositoryImpl implements PagamentoDomainRepository 
                 .dataValidade(pagamentoRegistrado.getDataValidade())
                 .cvv(pagamentoRegistrado.getCvv())
                 .valor(pagamentoRegistrado.getValor())
+                .descricao(pagamentoRegistrado.getDescricao())
+                .metodoPagamento(pagamentoRegistrado.getMetodoPagamento())
+                .statusPagamento(pagamentoRegistrado.getStatusPagamento())
                 .dataPagamento(pagamentoRegistrado.getDataPagamento())
                 .cartao(pagamentoRegistrado.getCartao())
                 .build();
