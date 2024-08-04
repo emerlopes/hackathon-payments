@@ -3,7 +3,6 @@ package br.com.emerlopes.payments.application.entrypoint.rest.cliente;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.BuscarClienteResponseDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.RegistrarClienteRequestDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.RegistrarClienteResponseDTO;
-import br.com.emerlopes.payments.application.shared.CustomResponseDTO;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.payments.domain.usecase.cliente.BuscarClientePorIdUseCase;
 import br.com.emerlopes.payments.domain.usecase.cliente.RegistrarClienteUseCase;
@@ -65,9 +64,9 @@ class ClienteControllerTest {
         ResponseEntity<?> responseEntity = clienteController.registrarCliente("Bearer token", requestDTO);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        CustomResponseDTO<RegistrarClienteResponseDTO> responseBody =
-                (CustomResponseDTO<RegistrarClienteResponseDTO>) responseEntity.getBody();
-        assertEquals(savedClienteDomainEntity.getId(), responseBody.getData().getIdCliente());
+        RegistrarClienteResponseDTO responseBody = (RegistrarClienteResponseDTO) responseEntity.getBody();
+        assert responseBody != null;
+        assertEquals(savedClienteDomainEntity.getId(), responseBody.getIdCliente());
     }
 
     @Test
@@ -83,10 +82,10 @@ class ClienteControllerTest {
         ResponseEntity<?> responseEntity = clienteController.buscarCliente("Bearer token", clienteId);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        CustomResponseDTO<BuscarClienteResponseDTO> responseBody =
-                (CustomResponseDTO<BuscarClienteResponseDTO>) responseEntity.getBody();
-        assertEquals(clienteDomainEntity.getId(), responseBody.getData().getIdCliente());
-        assertEquals(clienteDomainEntity.getNome(), responseBody.getData().getNome());
-        assertEquals(clienteDomainEntity.getEmail(), responseBody.getData().getEmail());
+        BuscarClienteResponseDTO responseBody = (BuscarClienteResponseDTO) responseEntity.getBody();
+        assert responseBody != null;
+        assertEquals(clienteDomainEntity.getId(), responseBody.getIdCliente());
+        assertEquals(clienteDomainEntity.getNome(), responseBody.getNome());
+        assertEquals(clienteDomainEntity.getEmail(), responseBody.getEmail());
     }
 }
