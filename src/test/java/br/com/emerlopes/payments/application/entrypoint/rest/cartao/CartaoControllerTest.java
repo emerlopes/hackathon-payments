@@ -20,9 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -74,22 +72,23 @@ public class CartaoControllerTest {
 
     @Test
     public void testGerarCartao() throws Exception {
-//        Mockito.when(gerarCartaoUseCase.execute(any(CartaoDomainEntity.class)))
-//                .thenReturn(cartaoDomainEntity);
+        Mockito.when(gerarCartaoUseCase.execute(any(CartaoDomainEntity.class)))
+                .thenReturn(cartaoDomainEntity);
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
         ObjectNode cartaoRequestJsonNode = objectMapper.valueToTree(gerarCartaoRequestDTO);
-        cartaoRequestJsonNode.put("data_validade", gerarCartaoRequestDTO.getDataValidade().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        cartaoRequestJsonNode.put("data_validade", "12/25"); // Enviando a data no formato MM/yy
         String cartaoRequestJson = objectMapper.writeValueAsString(cartaoRequestJsonNode);
 
         mockMvc.perform(post("/api/cartao")
                         .header("Authorization", "Bearer token")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(cartaoRequestJson))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id_cartao").value(cartaoDomainEntity.getId().toString()));
     }
 
     @Test

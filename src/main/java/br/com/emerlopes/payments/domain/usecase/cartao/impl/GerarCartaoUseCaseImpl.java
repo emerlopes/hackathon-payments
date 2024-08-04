@@ -4,7 +4,6 @@ import br.com.emerlopes.payments.application.shared.CpfUtils;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
-import br.com.emerlopes.payments.domain.exceptions.LimiteCartaoBusinessExceptions;
 import br.com.emerlopes.payments.domain.repository.CartaoDomainRepository;
 import br.com.emerlopes.payments.domain.repository.ClienteDomainRepository;
 import br.com.emerlopes.payments.domain.usecase.cartao.GerarCartaoUseCase;

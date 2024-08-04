@@ -3,6 +3,7 @@ package br.com.emerlopes.payments.repository;
 import br.com.emerlopes.payments.application.exceptions.DatabasePersistenceException;
 import br.com.emerlopes.payments.application.exceptions.ResourceNotFoundException;
 import br.com.emerlopes.payments.application.shared.CartaoUtils;
+import br.com.emerlopes.payments.application.shared.CpfUtils;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.payments.infrastructure.database.entity.CartaoEntity;
@@ -75,7 +76,6 @@ public class CartaoDomainRepositoryImplTest {
                 .build();
 
         clienteEntity = Converter.converterParaClienteEntity(cartaoDomainEntity);
-
     }
 
     @Test
@@ -96,7 +96,6 @@ public class CartaoDomainRepositoryImplTest {
 
         assertEquals("Erro ao salvar cartao", exception.getMessage());
     }
-
 
     @Test
     public void testJaPossuiDoisCartoes_Sim() {
@@ -221,5 +220,98 @@ public class CartaoDomainRepositoryImplTest {
         });
 
         assertEquals("Erro nao esperado ao buscar cartoes por cliente", exception.getMessage());
+    }
+
+    @Test
+    public void testBuscarCartoesClientePorCpf_Success() {
+        List<CartaoEntity> cartoes = Arrays.asList(cartaoEntity);
+        Mockito.when(cartaoRepository.findByCpf(eq(cartaoDomainEntity.getCpf()))).thenReturn(Optional.of(cartoes));
+
+        List<CartaoDomainEntity> result = cartaoDomainRepository.buscarCartoesClientePorCpf(cartaoDomainEntity);
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals(cartaoEntity.getId(), result.get(0).getId());
+        assertEquals(CartaoUtils.mascararCartaoCredito(cartaoEntity.getNumero()), result.get(0).getNumero());
+    }
+
+    @Test
+    public void testBuscarCartoesClientePorCpf_NenhumCartao() {
+        Mockito.when(cartaoRepository.findByCpf(any(String.class))).thenReturn(Optional.empty());
+
+        DatabasePersistenceException exception = assertThrows(DatabasePersistenceException.class, () -> {
+            cartaoDomainRepository.buscarCartoesClientePorCpf(cartaoDomainEntity);
+        });
+
+        assertEquals("Erro nao esperado ao buscar cartoes por cliente", exception.getMessage());
+    }
+
+    @Test
+    public void testBuscarCartoesClientePorCpf_ErroInesperado() {
+        Mockito.when(cartaoRepository.findByCpf(any(String.class))).thenThrow(new RuntimeException("Erro inesperado"));
+
+        DatabasePersistenceException exception = assertThrows(DatabasePersistenceException.class, () -> {
+            cartaoDomainRepository.buscarCartoesClientePorCpf(cartaoDomainEntity);
+        });
+
+        assertEquals("Erro nao esperado ao buscar cartoes por cliente", exception.getMessage());
+    }
+
+    @Test
+    public void testBuscarCartaoClientePorNumero_Success() {
+        Mockito.when(cartaoRepository.findByNumero(any(String.class))).thenReturn(Optional.of(cartaoEntity));
+
+        Optional<CartaoDomainEntity> result = cartaoDomainRepository.buscarCartaoClientePorNumero(cartaoDomainEntity);
+
+        assertTrue(result.isPresent());
+        assertEquals(cartaoEntity.getId(), result.get().getId());
+        assertEquals(CartaoUtils.mascararCartaoCredito(cartaoEntity.getNumero()), result.get().getNumero());
+    }
+
+    @Test
+    public void testBuscarCartaoClientePorNumero_NenhumCartao() {
+        Mockito.when(cartaoRepository.findByNumero(any(String.class))).thenReturn(Optional.empty());
+
+        DatabasePersistenceException exception = assertThrows(DatabasePersistenceException.class, () -> {
+            cartaoDomainRepository.buscarCartaoClientePorNumero(cartaoDomainEntity);
+        });
+
+        assertEquals("Erro nao esperado ao buscar cartao por numero", exception.getMessage());
+    }
+
+    @Test
+    public void testBuscarCartaoClientePorNumero_ErroInesperado() {
+        Mockito.when(cartaoRepository.findByNumero(any(String.class))).thenThrow(new RuntimeException("Erro inesperado"));
+
+        DatabasePersistenceException exception = assertThrows(DatabasePersistenceException.class, () -> {
+            cartaoDomainRepository.buscarCartaoClientePorNumero(cartaoDomainEntity);
+        });
+
+        assertEquals("Erro nao esperado ao buscar cartao por numero", exception.getMessage());
+    }
+
+    @Test
+    public void testAtualizarParaNovoLimiteCartaoPorNumero_Success() {
+        Mockito.when(cartaoRepository.findByNumero(any(String.class))).thenReturn(Optional.of(cartaoEntity));
+
+        CartaoDomainEntity novoCartaoDomainEntity = CartaoDomainEntity.builder()
+                .numero(cartaoEntity.getNumero())
+                .limite(new BigDecimal("2000.00"))
+                .build();
+
+        cartaoDomainRepository.atualizarParaNovoLimiteCartaoPorNumero(novoCartaoDomainEntity);
+
+        Mockito.verify(cartaoRepository, Mockito.times(1)).save(any(CartaoEntity.class));
+    }
+
+    @Test
+    public void testAtualizarParaNovoLimiteCartaoPorNumero_NenhumCartao() {
+        Mockito.when(cartaoRepository.findByNumero(any(String.class))).thenReturn(Optional.empty());
+
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
+            cartaoDomainRepository.atualizarParaNovoLimiteCartaoPorNumero(cartaoDomainEntity);
+        });
+
+        assertEquals("Cartao nao encontrado", exception.getMessage());
     }
 }
