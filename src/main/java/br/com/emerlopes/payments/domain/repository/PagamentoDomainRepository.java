@@ -7,5 +7,5 @@ import java.util.List;
 public interface PagamentoDomainRepository {
     PagamentoDomainEntity registrarPagamentoCartao(final PagamentoDomainEntity pagamentoDomainEntity);
 
-    List<PagamentoDomainEntity> findByCpf(final PagamentoDomainEntity pagamentoDomainEntity);
+    List<PagamentoDomainEntity> buscarPagamentosPorCpf(final PagamentoDomainEntity pagamentoDomainEntity);
 }
