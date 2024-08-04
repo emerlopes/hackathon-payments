@@ -1,0 +1,166 @@
+<mxfile host="Electron" modified="2024-08-04T23:08:33.758Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="jCz16l8QztFfYmdgvCHe" version="24.6.4" type="device">
+  <diagram name="Página-1" id="jL50IFQ1BZIH77aHQics">
+    <mxGraphModel dx="3217" dy="1423" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-5" value="Hackathon-Authorization" style="fillColor=#EFF0F3;strokeColor=none;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#232F3D;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="161" width="680" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-1" value="auth" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="480" y="327" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-3" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="40" y="334" width="48" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-9" value="" style="fillColor=none;strokeColor=#147EBA;dashed=1;verticalAlign=top;fontStyle=0;fontColor=#147EBA;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="153.5" y="221" width="260" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-11" value="&lt;b&gt;/auth/token&lt;/b&gt;" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
+          <mxGeometry x="258.5" y="261" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-12" value="&lt;b&gt;/auth/validate&lt;/b&gt;" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
+          <mxGeometry x="259" y="398" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-13" value="Hackathon-Payments" style="fillColor=#EFF0F3;strokeColor=none;dashed=0;verticalAlign=top;fontStyle=0;fontColor=#232F3D;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="161" width="720" height="699" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-15" value="payments" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;" vertex="1" parent="1">
+          <mxGeometry x="860" y="327" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-16" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="468.5" width="48" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-17" target="dCi2mr4LiYDVyKbxEAa7-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-17" value="" style="fillColor=none;strokeColor=#147EBA;dashed=1;verticalAlign=top;fontStyle=0;fontColor=#147EBA;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1013.5" y="200" width="260" height="601" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.995;exitY=0.63;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-18" target="dCi2mr4LiYDVyKbxEAa7-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-18" target="dCi2mr4LiYDVyKbxEAa7-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-18" value="&lt;b&gt;/api/cliente&lt;/b&gt;" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
+          <mxGeometry x="1118.5" y="261" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-19" target="dCi2mr4LiYDVyKbxEAa7-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.995;exitY=0.63;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-19" target="dCi2mr4LiYDVyKbxEAa7-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-19" value="&lt;b&gt;/api/cartao&lt;/b&gt;" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
+          <mxGeometry x="1119" y="398" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-21" value="" style="points=[[0.35,0,0],[0.98,0.51,0],[1,0.71,0],[0.67,1,0],[0,0.795,0],[0,0.65,0]];verticalLabelPosition=bottom;sketch=0;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.user;fillColor=#005073;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="660" y="311" width="110" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-21" target="dCi2mr4LiYDVyKbxEAa7-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-21" target="dCi2mr4LiYDVyKbxEAa7-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.005;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-15" target="dCi2mr4LiYDVyKbxEAa7-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.995;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-1" target="dCi2mr4LiYDVyKbxEAa7-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.995;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-1" target="dCi2mr4LiYDVyKbxEAa7-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-29" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="399" y="309" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-32" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="900" y="251" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.005;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-15" target="dCi2mr4LiYDVyKbxEAa7-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-34" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="900" y="441" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-35" value="&lt;b&gt;/api/pagamentos&lt;/b&gt;" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
+          <mxGeometry x="1119" y="541" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.005;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-15" target="dCi2mr4LiYDVyKbxEAa7-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-37" value="4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="900" y="581" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-39" value="&lt;b&gt;/api/pagamentos/cliente/{cpf}&lt;/b&gt;" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=api" vertex="1" parent="1">
+          <mxGeometry x="1119" y="681" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.005;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-15" target="dCi2mr4LiYDVyKbxEAa7-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-41" value="5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="900" y="729" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-43" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="611" width="680" height="539" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-44" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Jornada&lt;/h1&gt;&lt;p&gt;1 - Usuário solicita a geração do token para o serviço:&amp;nbsp;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;Hackathon-Authorization;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;2 -&amp;nbsp; Usuário solicita o registro de cliente requisitando a chamada http: /api/cliente do serviço,&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;Hackathon-Payments;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center;&quot;&gt;2.1 - Verifica se é um token valido.&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;2.2 - Verifica se o cliente já existe.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;3 - Usuário registra um cartão requisitando a chamada http: /api/cartao;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;3.1 - Verifica se é um token valido.&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;3.2 - Verifica se o cliente já possui dois cartões.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;3.3 - Verifica se o cliente já possui o cartão cadastrado na base de dados;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;3.4 - Verifica se o cliente existe.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;4 - Usuário solicita um pagamento com o cartão, requisitando a chamada http: /api/pagamentos; e&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;4.1 - Verifica se o cartão existe.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;4.2 - Verifica o valor para pagamento.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;4.3 - Verifica a data de validade do cartão.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;4.4 - Verifica o CVV.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;4.5 - Verifica o saldo limite disponível do cartão.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;4.6 - Atualiza o saldo limite&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;disponível do&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;cartão.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(35, 47, 61); text-align: center; background-color: initial;&quot;&gt;5 - Usuário solicita os pagamentos realizados requisitando a chmada http: /api/pagamentos/cliente{cpf}&lt;/span&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-20" y="630" width="640" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-48" value="2.1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="227" width="29" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-52" value="2.1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="400" y="398" width="29" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-54" value="2.2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="298" width="29" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-55" value="3.1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="351" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-58" value="3.1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="399" y="441" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-60" value="3.2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="391" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-61" value="3.3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1211" y="391" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-62" value="3.4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="391" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-67" value="3.4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1088.5" y="251" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-68" value="4.1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="530" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.522;entryY=0.996;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dCi2mr4LiYDVyKbxEAa7-35" target="dCi2mr4LiYDVyKbxEAa7-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-71" value="4.1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1088.5" y="210" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-72" value="4.2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1211" y="530" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-73" value="4.3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="530" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-74" value="4.4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="530" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-75" value="4.5" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="530" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dCi2mr4LiYDVyKbxEAa7-76" value="4.6" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="570" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
