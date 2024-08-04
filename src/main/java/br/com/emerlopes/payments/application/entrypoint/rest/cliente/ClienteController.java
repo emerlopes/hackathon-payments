@@ -72,13 +72,11 @@ public class ClienteController {
         final ClienteDomainEntity cliente = buscarClientePorIdUseCase.execute(clienteDomainEntity);
 
         return ResponseEntity.status(HttpStatus.OK).body(
-                new CustomResponseDTO<BuscarClienteResponseDTO>().setData(
-                        BuscarClienteResponseDTO.builder()
-                                .nome(cliente.getNome())
-                                .email(cliente.getEmail())
-                                .idCliente(cliente.getId())
-                                .build()
-                )
+                BuscarClienteResponseDTO.builder()
+                        .nome(cliente.getNome())
+                        .email(cliente.getEmail())
+                        .idCliente(cliente.getId())
+                        .build()
         );
     }
 }
