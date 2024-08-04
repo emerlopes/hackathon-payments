@@ -42,7 +42,7 @@ public class GerarCartaoUseCaseImpl implements GerarCartaoUseCase {
 
         if (jaPossuiDoisCartoes) {
             log.error("Cliente ja possui dois cartoes");
-            throw new LimiteCartaoBusinessExceptions("Cliente ja possui dois cartoes");
+            throw new BusinessExceptions("Cliente ja possui dois cartoes");
         }
 
         final boolean jaPossuiCartaoCadastrado = cartaoDomainRepository.jaPossuiCartaoCadastrado(
