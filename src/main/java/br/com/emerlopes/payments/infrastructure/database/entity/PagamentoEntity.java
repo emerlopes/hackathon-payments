@@ -25,6 +25,9 @@ public class PagamentoEntity {
     private LocalDate dataValidade;
     private String cvv;
     private BigDecimal valor;
+    private String descricao;
+    private String metodoPagamento;
+    private String statusPagamento;
     private LocalDateTime dataPagamento;
 
     @ManyToOne

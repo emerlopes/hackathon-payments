@@ -18,4 +18,5 @@ public class RegistrarPagamentoRequestDTO {
 
     private String cvv;
     private BigDecimal valor;
+    private String descricao;
 }

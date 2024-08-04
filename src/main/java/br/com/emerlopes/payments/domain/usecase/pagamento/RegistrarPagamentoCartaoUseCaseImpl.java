@@ -1,6 +1,8 @@
 package br.com.emerlopes.payments.domain.usecase.pagamento;
 
 import br.com.emerlopes.payments.application.shared.CpfUtils;
+import br.com.emerlopes.payments.application.shared.enums.MetodoPagamentoEnum;
+import br.com.emerlopes.payments.application.shared.enums.StatusPagamentoEnum;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.entity.PagamentoDomainEntity;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class RegistrarPagamentoCartaoUseCaseImpl implements RegistrarPagamentoCartaoUseCase {
@@ -59,8 +62,8 @@ public class RegistrarPagamentoCartaoUseCaseImpl implements RegistrarPagamentoCa
         final LocalDate dataValidadeCartao = cartao.get().getDataValidade();
 
         if (!dataValidadePagemento.equals(dataValidadeCartao)) {
-            log.error("Data de pagamento invalida: {}", dataValidadePagemento);
-            throw new BusinessExceptions("Data de pagamento invalida: " + dataValidadePagemento);
+            log.error("Data de validade do cartão: {}", dataValidadePagemento);
+            throw new BusinessExceptions("Data de validade do cartão: " + dataValidadePagemento);
         }
 
         if (LocalDate.now().isAfter(dataValidadeCartao)) {
@@ -79,6 +82,10 @@ public class RegistrarPagamentoCartaoUseCaseImpl implements RegistrarPagamentoCa
             throw new SaldoBusinessExceptions("Saldo insuficiente para pagamento: " + valorPagamento);
         }
 
+        pagamentoDomainEntity.setDescricao(pagamentoDomainEntity.getDescricao());
+        pagamentoDomainEntity.setMetodoPagamento(MetodoPagamentoEnum.CARTAO_CREDITO.getDescricao());
+        pagamentoDomainEntity.setStatusPagamento(gerarStatusPagamentoAleatorio().getDescricao());
+
         final PagamentoDomainEntity pagamentoRegistrado = pagamentoDomainRepository.registrarPagamentoCartao(
                 pagamentoDomainEntity
         );
@@ -95,6 +102,12 @@ public class RegistrarPagamentoCartaoUseCaseImpl implements RegistrarPagamentoCa
 
         return pagamentoRegistrado;
 
+    }
+
+    private StatusPagamentoEnum gerarStatusPagamentoAleatorio() {
+        Random random = new Random();
+        StatusPagamentoEnum[] status = StatusPagamentoEnum.values();
+        return status[random.nextInt(status.length)];
     }
 
 }
