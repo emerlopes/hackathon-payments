@@ -25,11 +25,11 @@ public class SecurityService {
     ) {
         log.info("Validando token");
 
-        final CustomResponseDTO<TokenResponseDTO> response = hackathonAuthClient.validateToken(token);
+        final TokenResponseDTO response = hackathonAuthClient.validateToken(token);
 
         log.info("Token validado");
 
-        final var isValid = response.getData().isTokenValido();
+        final var isValid = response.isTokenValido();
 
         if (!isValid) {
             log.error("Token inválido");

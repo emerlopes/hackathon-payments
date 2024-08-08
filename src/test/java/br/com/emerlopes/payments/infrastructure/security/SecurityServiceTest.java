@@ -36,11 +36,8 @@ public class SecurityServiceTest {
                 .tokenValido(true)
                 .build();
 
-        CustomResponseDTO<TokenResponseDTO> responseDTO = new CustomResponseDTO<TokenResponseDTO>()
-                .setData(tokenResponseDTO);
-
         Mockito.when(hackathonAuthClient.validateToken(any(String.class)))
-                .thenReturn(responseDTO);
+                .thenReturn(tokenResponseDTO);
 
         boolean result = securityService.isTokenValid("valid-token");
 
@@ -53,11 +50,8 @@ public class SecurityServiceTest {
                 .tokenValido(false)
                 .build();
 
-        CustomResponseDTO<TokenResponseDTO> responseDTO = new CustomResponseDTO<TokenResponseDTO>()
-                .setData(tokenResponseDTO);
-
         Mockito.when(hackathonAuthClient.validateToken(any(String.class)))
-                .thenReturn(responseDTO);
+                .thenReturn(tokenResponseDTO);
 
         assertThrows(InvalidTokenException.class, () -> {
             securityService.isTokenValid("invalid-token");
