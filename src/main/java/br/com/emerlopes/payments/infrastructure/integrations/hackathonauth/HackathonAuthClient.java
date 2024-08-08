@@ -18,7 +18,7 @@ public interface HackathonAuthClient {
     );
 
     @PostMapping("/auth/validate")
-    CustomResponseDTO<TokenResponseDTO> validateToken(
+    TokenResponseDTO validateToken(
             final @RequestHeader("Authorization") String accessToken
     );
 }
