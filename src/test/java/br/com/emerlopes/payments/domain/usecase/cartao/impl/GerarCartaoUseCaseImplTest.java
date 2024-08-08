@@ -3,6 +3,7 @@ package br.com.emerlopes.payments.domain.usecase.cartao.impl;
 import br.com.emerlopes.payments.domain.entity.CartaoDomainEntity;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
+import br.com.emerlopes.payments.domain.exceptions.CartaoBusinessExceptions;
 import br.com.emerlopes.payments.domain.repository.CartaoDomainRepository;
 import br.com.emerlopes.payments.domain.repository.ClienteDomainRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -87,7 +88,7 @@ public class GerarCartaoUseCaseImplTest {
         Mockito.when(cartaoDomainRepository.jaPossuiDoisCartoes(any(CartaoDomainEntity.class)))
                 .thenReturn(true);
 
-        BusinessExceptions exception = assertThrows(BusinessExceptions.class, () -> {
+        CartaoBusinessExceptions exception = assertThrows(CartaoBusinessExceptions.class, () -> {
             gerarCartaoUseCase.execute(cartaoDomainEntity);
         });
 
