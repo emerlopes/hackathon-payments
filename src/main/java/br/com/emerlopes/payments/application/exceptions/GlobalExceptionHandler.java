@@ -2,6 +2,7 @@ package br.com.emerlopes.payments.application.exceptions;
 
 import br.com.emerlopes.payments.application.shared.CustomErrorResponse;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
+import br.com.emerlopes.payments.domain.exceptions.CartaoBusinessExceptions;
 import br.com.emerlopes.payments.domain.exceptions.SaldoBusinessExceptions;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -64,6 +65,20 @@ public class GlobalExceptionHandler {
                 request.getDescription(false)
         );
         return new ResponseEntity<>(errorDetails, HttpStatus.PAYMENT_REQUIRED);
+    }
+
+    @ExceptionHandler(CartaoBusinessExceptions.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<CustomErrorResponse> handleCartaoBusinessExceptions(
+            final SaldoBusinessExceptions ex,
+            final WebRequest request
+    ) {
+        CustomErrorResponse errorDetails = new CustomErrorResponse(
+                LocalDateTime.now(),
+                "Número maximo de cartões atingido",
+                request.getDescription(false)
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
     }
 
 }
