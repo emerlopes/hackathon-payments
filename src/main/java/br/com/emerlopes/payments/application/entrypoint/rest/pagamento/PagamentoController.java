@@ -45,7 +45,11 @@ public class PagamentoController {
                 .dataValidade(pagamentoRequestDTO.getDataValidade())
                 .cvv(pagamentoRequestDTO.getCvv())
                 .valor(pagamentoRequestDTO.getValor())
-                .descricao(pagamentoRequestDTO.getDescricao())
+                .descricao(
+                        pagamentoRequestDTO.getDescricao() == null
+                                ? "The Football Is Good For Training And Recreational Purposes"
+                                : pagamentoRequestDTO.getDescricao()
+                )
                 .build();
 
         final PagamentoDomainEntity chavePagamento = registrarPagamentoCartaoUseCase.execute(pagamentoDomainEntity);
