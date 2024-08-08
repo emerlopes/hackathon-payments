@@ -3,7 +3,8 @@ package br.com.emerlopes.payments.application.entrypoint.rest.cliente;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.BuscarClienteResponseDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.RegistrarClienteRequestDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.cliente.dto.RegistrarClienteResponseDTO;
-import br.com.emerlopes.payments.application.shared.CustomResponseDTO;
+import br.com.emerlopes.payments.application.entrypoint.rest.cliente.examples.BuscarClienteExample;
+import br.com.emerlopes.payments.application.entrypoint.rest.cliente.examples.RegistrarClienteExample;
 import br.com.emerlopes.payments.domain.entity.ClienteDomainEntity;
 import br.com.emerlopes.payments.domain.usecase.cliente.BuscarClientePorIdUseCase;
 import br.com.emerlopes.payments.domain.usecase.cliente.RegistrarClienteUseCase;
@@ -31,6 +32,7 @@ public class ClienteController {
     }
 
     @PostMapping
+    @RegistrarClienteExample
     @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> registrarCliente(
             final @RequestHeader("Authorization") String authorization,
@@ -59,6 +61,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{idCliente}")
+    @BuscarClienteExample
     @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> buscarCliente(
             final @RequestHeader("Authorization") String authorization,

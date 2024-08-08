@@ -17,6 +17,6 @@ public class BuscarPagamentosCartaoResponseDTO {
     @JsonProperty("metodo_pagamento")
     private MetodoPagamentoEnum metodoPagamento;
 
-    @JsonProperty("status_pagamento")
+    @JsonProperty("status")
     private StatusPagamentoEnum statusPagamento;
 }

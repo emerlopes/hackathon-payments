@@ -101,7 +101,7 @@ public class CartaoControllerTest {
                         .header("Authorization", "Bearer token")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data[0].id_cartao").value(cartaoDomainEntity.getId().toString()))
-                .andExpect(jsonPath("$.data[0].numero").value(cartaoDomainEntity.getNumero()));
+                .andExpect(jsonPath("$.[0].id_cartao").value(cartaoDomainEntity.getId().toString()))
+                .andExpect(jsonPath("$.[0].numero").value(cartaoDomainEntity.getNumero()));
     }
 }

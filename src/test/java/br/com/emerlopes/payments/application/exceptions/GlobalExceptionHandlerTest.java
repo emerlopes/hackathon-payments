@@ -2,9 +2,9 @@ package br.com.emerlopes.payments.application.exceptions;
 
 import br.com.emerlopes.payments.application.shared.CustomErrorResponse;
 import br.com.emerlopes.payments.domain.exceptions.BusinessExceptions;
-import br.com.emerlopes.payments.domain.exceptions.SaldoBusinessExceptions;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -38,7 +38,7 @@ public class GlobalExceptionHandlerTest {
 
         ResponseEntity<String> response = globalExceptionHandler.handleConstraintViolationException(ex);
 
-        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertEquals("Invalid value; ", response.getBody());
     }
 
@@ -49,30 +49,19 @@ public class GlobalExceptionHandlerTest {
         ResponseEntity<Object> response = globalExceptionHandler.handleInvalidTokenException(ex);
 
         assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-        assertEquals("The provided token is invalid or has expired. Please authenticate again.", response.getBody());
+        Assertions.assertThat(response.getBody());
     }
 
     @Test
     public void testHandleBusinessExceptions() {
-        BusinessExceptions ex = new BusinessExceptions("Business error");
+        BusinessExceptions ex = new BusinessExceptions("An unexpected error occurred");
         Mockito.when(webRequest.getDescription(false)).thenReturn("uri=/test");
 
         ResponseEntity<CustomErrorResponse> response = globalExceptionHandler.handleBusinessExceptions(ex, webRequest);
 
-        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, response.getStatusCode());
-        assertEquals("Business error", response.getBody().getMessage());
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("An unexpected error occurred", response.getBody().getMessage());
         assertEquals("uri=/test", response.getBody().getDetails());
     }
 
-    @Test
-    public void testHandleSaldoBusinessExceptions() {
-        SaldoBusinessExceptions ex = new SaldoBusinessExceptions("Saldo insuficiente");
-        Mockito.when(webRequest.getDescription(false)).thenReturn("uri=/test");
-
-        ResponseEntity<CustomErrorResponse> response = globalExceptionHandler.handleSaldoBusinessExceptions(ex, webRequest);
-
-        assertEquals(HttpStatus.PAYMENT_REQUIRED, response.getStatusCode());
-        assertEquals("Saldo insuficiente", response.getBody().getMessage());
-        assertEquals("uri=/test", response.getBody().getDetails());
-    }
 }

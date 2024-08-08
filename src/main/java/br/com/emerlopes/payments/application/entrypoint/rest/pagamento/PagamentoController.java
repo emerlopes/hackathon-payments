@@ -3,7 +3,8 @@ package br.com.emerlopes.payments.application.entrypoint.rest.pagamento;
 import br.com.emerlopes.payments.application.entrypoint.rest.pagamento.dto.BuscarPagamentosCartaoResponseDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.pagamento.dto.RegistrarPagamentoRequestDTO;
 import br.com.emerlopes.payments.application.entrypoint.rest.pagamento.dto.RegistrarPagamentoResponseDTO;
-import br.com.emerlopes.payments.application.shared.CustomResponseDTO;
+import br.com.emerlopes.payments.application.entrypoint.rest.pagamento.examples.BuscarPagamentosCartaoExample;
+import br.com.emerlopes.payments.application.entrypoint.rest.pagamento.examples.RegistrarPagamentoExample;
 import br.com.emerlopes.payments.application.shared.enums.MetodoPagamentoEnum;
 import br.com.emerlopes.payments.application.shared.enums.StatusPagamentoEnum;
 import br.com.emerlopes.payments.domain.entity.PagamentoDomainEntity;
@@ -32,6 +33,7 @@ public class PagamentoController {
     }
 
     @PostMapping
+    @RegistrarPagamentoExample
     @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> registrarPagamentoCartao(
             final @RequestHeader("Authorization") String authorization,
@@ -62,6 +64,7 @@ public class PagamentoController {
     }
 
     @GetMapping("/cliente/{cpf}")
+    @BuscarPagamentosCartaoExample
     @PreAuthorize("@securityService.isTokenValid(#authorization)")
     public ResponseEntity<?> buscarPagamentosCartao(
             final @RequestHeader("Authorization") String authorization,
