@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CartaoBusinessExceptions.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<CustomErrorResponse> handleCartaoBusinessExceptions(
-            final SaldoBusinessExceptions ex,
+            final CartaoBusinessExceptions ex,
             final WebRequest request
     ) {
         CustomErrorResponse errorDetails = new CustomErrorResponse(

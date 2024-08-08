@@ -51,7 +51,7 @@ public class GerarCartaoUseCaseImpl implements GerarCartaoUseCase {
 
         if (jaPossuiCartaoCadastrado) {
             log.error("Cliente ja possui cartao cadastrado");
-            throw new BusinessExceptions("Cliente ja possui cartao cadastrado");
+            throw new CartaoBusinessExceptions("Cliente ja possui cartao cadastrado");
         }
 
         final ClienteDomainEntity clienteDomainEntity = clienteDomainRepository.buscarClientePorCpf(
