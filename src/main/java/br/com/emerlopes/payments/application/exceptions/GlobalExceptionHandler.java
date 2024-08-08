@@ -17,45 +17,50 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ResponseEntity<String> handleConstraintViolationException(
             final ConstraintViolationException ex
     ) {
         StringBuilder message = new StringBuilder();
         ex.getConstraintViolations().forEach(violation -> message.append(violation.getMessage()).append("; "));
-        return new ResponseEntity<>(message.toString(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(message.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<Object> handleInvalidTokenException(
             final InvalidTokenException ex
     ) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+        CustomErrorResponse errorDetails = new CustomErrorResponse(
+                LocalDateTime.now(),
+                ex.getMessage(),
+                "Invalid token used in the request"
+        );
+        return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(BusinessExceptions.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<CustomErrorResponse> handleBusinessExceptions(
-            final BusinessExceptions ex,
+            final Exception ex,
             final WebRequest request
     ) {
         CustomErrorResponse errorDetails = new CustomErrorResponse(
                 LocalDateTime.now(),
-                ex.getMessage(),
+                "An unexpected error occurred",
                 request.getDescription(false)
         );
-        return new ResponseEntity<>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(SaldoBusinessExceptions.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.PAYMENT_REQUIRED)
     public ResponseEntity<CustomErrorResponse> handleSaldoBusinessExceptions(
             final SaldoBusinessExceptions ex,
             final WebRequest request
     ) {
         CustomErrorResponse errorDetails = new CustomErrorResponse(
                 LocalDateTime.now(),
-                ex.getMessage(),
+                "Saldo limite excedido",
                 request.getDescription(false)
         );
         return new ResponseEntity<>(errorDetails, HttpStatus.PAYMENT_REQUIRED);
