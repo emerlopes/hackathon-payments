@@ -10,8 +10,7 @@
 
 - Segurança: A segurança da aplicação é garantida por meio de tokens JWT (JSON Web Token), que são gerados e validados
 
-- Banco de Dados: Para facilitar o desenvolvimento e testes, a aplicação utiliza o banco de dados H2, que é um banco de
-  dados em memória.
+- Banco de Dados: Para facilitar o desenvolvimento e testes, a aplicação utiliza o banco de dados postgreSQL.
 
 - Dependências: O projeto utiliza o Gradle como gerenciador de dependências e build.
 
