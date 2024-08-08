@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: hackathon
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - postgres_data_payment:/var/lib/postgresql/data
     networks:
