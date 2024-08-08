@@ -35,6 +35,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.3'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 
     testImplementation 'org.springframework.security:spring-security-test'
 
